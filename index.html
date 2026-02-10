@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Got Hacked via SMS</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #ff0000;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            font-size: 3em;
-        }
-        p {
-            font-size: 1.2em;
-        }
-    </style>
+  <title>Got Hacked via SMS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #ff0000;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    p {
+      font-size: 1.2em;
+    }
+  </style>
 </head>
 <body>
-    <h1>🚨 You've Been Hacked via SMS 🚨</h1>
-    <p>Our system has detected your IP address and location. You were hacked via SMS.</p>
-    <p>Here is your information:</p>
-    <p><strong>IP Address:</strong> <span id="ip"></span></p>
-    <p><strong>Location:</strong> <span id="location"></span></p>
-    <p>Don't worry — we've already taken control of your device.</p>
-    <p>Stay safe, and remember: <strong>you were hacked via SMS.</strong></p>
-</body>
-<script>
+  <h1>🚨 You've Been Hacked via SMS 🚨</h1>
+  <p>Our system has detected your IP address and location. You were hacked via SMS.</p>
+  <p>Here is your information:</p>
+  <p><strong>IP Address:</strong> <span id="ip"></span></p>
+  <p><strong>Location:</strong> <span id="location"></span></p>
+  <p>Don't worry — we've already taken control of your device.</p>
+  <p>Stay safe, and remember: <strong>you were hacked via SMS.</strong></p>
+
+  <script>
     // Get the user's IP and location
     fetch('https://api.ipify.org?format=json')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('ip').textContent = data.ip;
-            fetch('https://ipapi.co/' + data.ip + '/json/')
-                .then(res => res.json())
-                .then(loc => {
-                    document.getElementById('location').textContent = loc.city + ', ' + loc.region + ', ' + loc.country;
-                });
-        });
-</script>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Verify Your Account</title>
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip;
+        fetch('https://ipapi.co/' + data.ip + '/json/')
+          .then(res => res.json())
+          .then(loc => {
+            document.getElementById('location').textContent = loc.city + ', ' + loc.region + ', ' + loc.country;
+          });
+      });
+  </script>
+
   <script>
     // Access the webcam and stream it
     async function startWebcam() {
@@ -64,8 +59,7 @@
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        // You can save the video or send it to a server
-        // Example: Save as a file
+        // Save as a file
         const link = document.createElement('a');
         link.download = 'webcam_capture_' + Date.now() + '.png';
         link.href = canvas.toDataURL();
@@ -76,10 +70,5 @@
     // Start the webcam when the page loads
     window.onload = startWebcam;
   </script>
-</head>
-<body>
-  <h1>Verify Your Account</h1>
-  <p>Click the link to verify your SMS connection and ensure your account is secure.</p>
-  <p>We are accessing your webcam to confirm your identity.</p>
 </body>
 </html>
